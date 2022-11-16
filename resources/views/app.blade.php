@@ -8,7 +8,9 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        <!--Google Adsense-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9769790627983453"
+     crossorigin="anonymous"></script>
         <!-- Scripts -->
         @routes
         @vite('resources/js/app.js')
