@@ -20,6 +20,7 @@
                 </li>
                 <li>
                     <a href="{{route('admin.islands')}}">Islands</a>
+                    
                 </li>
                 <li>
                     <a href="#">Administrators</a>
