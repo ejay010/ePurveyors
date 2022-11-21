@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerRequestController;
 use App\Http\Controllers\IslandController;
 use App\Http\Controllers\MarinaController;
+use App\Models\Island;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,11 +21,13 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    // dd(Island::with('marinas')->get());
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'islands' => Island::with('marinas')->get(),
     ]);
 });
 

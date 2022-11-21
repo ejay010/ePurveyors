@@ -2,7 +2,7 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import NavLinkVue from '@/Components/NavLink.vue';
 import TextInputVue from '@/Components/TextInput.vue';
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import InputLabel from '@/Components/InputLabel.vue';
 
 defineProps({
@@ -10,12 +10,13 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    // errors: Object,
+    errors: Object,
+    islands: Object,
 });
 
 const service_request = useForm({
-    island: '',
-    marina: '',
+    island: {},
+    marina: {},
     list_file: {},
     contact_info: {
         name: '',
@@ -78,15 +79,15 @@ function send_everything() {
                         <div class="flex items-center justify-around">
                             <label for="island">Island:</label>
                             <select v-model="service_request.island" name="island" id="island" class=" border-0 border-b shadow rounded" required>
-                                                        <option value="Long Island">Long Island</option>
-                                                    </select>
+                                <option v-for="island in islands" :key="island.id" :value="island">{{ island.name }}</option>
+                            </select>
                         </div>
     
                         <div class="flex items-center justify-around">
                             <label for="marina">Marina:</label>
                             <select v-model="service_request.marina" name="marina" id="marina" class="border-0 border-b shadow rounded" required>
-                                                        <option value="Flying Fish Marina">Flying Fish Marina</option>
-                                                    </select>
+                                <option v-for="marina in service_request.island.marinas" :key="marina.id" :value="marina">{{ marina.name }}</option>
+                            </select>
                         </div>
     
                         <div class="mx-auto">
@@ -169,8 +170,8 @@ function send_everything() {
                         </button>
                     </div>
     
-                    <p>Island: {{ service_request.island }}</p>
-                    <p>Marina: {{ service_request.marina }}</p>
+                    <p>Island: {{ service_request.island.name }}</p>
+                    <p>Marina: {{ service_request.marina.name }}</p>
     
                 </div>
     

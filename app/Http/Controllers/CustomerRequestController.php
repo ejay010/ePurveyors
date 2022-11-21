@@ -55,22 +55,23 @@ class CustomerRequestController extends Controller
     public function store(Request $request)
     {
         //validate input
-        $request->validate([
-            'island' => 'required|string',
-            'marina' => 'required|string',
+        $validated = $request->validate([
+            'island.name' => 'required|string',
+            'marina.name' => 'required|string',
             'list_file' => 'file',
             'contact_info.name' => 'required|string',
             'contact_info.email' => 'required|email',
+            'contact_info.tel_phone' => 'nullable'
         ]);
 
         $newRequest = CustomerRequest::create([
             'status' => 'Received',
-            'island' => $request->island,
-            'marina' => $request->marina,
+            'island' => $validated['island']['name'],
+            'marina' => $validated['marina']['name'],
             'list_file' => $request->list_file->store('provision_lists'),
-            'customerName' => $request->contact_info['name'],
-            'customerEmail' => $request->contact_info['email'],
-            'customerTelPhone' => $request->contact_info['tel_phone'],
+            'customerName' => $validated['contact_info']['name'],
+            'customerEmail' => $validated['contact_info']['email'],
+            'customerTelPhone' => $validated['contact_info']['tel_phone'],
         ]);
 
         return redirect(route('customerRequest.show', $newRequest->id));
