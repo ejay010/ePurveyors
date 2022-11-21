@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerRequestController;
-use App\Models\CustomerRequest;
+use App\Http\Controllers\IslandController;
+use App\Http\Controllers\MarinaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,3 +39,17 @@ Route::post('/customer-request/{customerRequest}/edit', [CustomerRequestControll
 //Admin routes
 Route::get('/customer-requests', [CustomerRequestController::class, 'index'])->name('allCustomerRequests');
 require __DIR__.'/auth.php';
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('islands', [IslandController::class, 'index'])->name('admin.islands');
+    Route::get('/islands/create', [IslandController::class, 'create'])->name('admin.islands.create');
+    Route::post('/islands/store', [IslandController::class, 'store'])->name('admin.islands.store');
+    Route::get('/islands/{island:slug}', [IslandController::class, 'show'])->name('admin.islands.show');
+    Route::get('/island/{island:slug}/edit', [IslandController::class, 'edit'])->name('admin.island.edit');
+    Route::patch('/islands/{island:slug}/update', [IslandController::class, 'update'])->name('admin.islands.update');
+    Route::get('/islands/{island:slug}/marina/create', [IslandController::class, 'createMarina'])->name('admin.island.marina.create');
+    Route::get('/islands/{island:slug}/destroy', [IslandController::class, 'destroy'])->name('admin.island.delete');
+
+    Route::post('marina/store', [MarinaController::class, 'store'])->name('admin.marina.store');
+});

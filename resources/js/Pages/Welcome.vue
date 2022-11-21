@@ -1,5 +1,7 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import NavLinkVue from '@/Components/NavLink.vue';
+import TextInputVue from '@/Components/TextInput.vue';
 import { reactive, ref } from 'vue';
 import InputLabel from '@/Components/InputLabel.vue';
 
@@ -58,12 +60,12 @@ function send_everything() {
     
             <!-- nav links-->
             <nav class="space-x-4">
-                <a href="#">Login</a>
-                <a href="#">Register</a>
+                <NavLinkVue :href="route('login')">Login</NavLinkVue>
+                <NavLinkVue :href="route('register')">Register</NavLinkVue>
             </nav>
         </div>
     
-        <div class="flex bg-white w-1/2 m-10 mx-auto rounded-2xl h-full">
+        <div class="flex bg-white m:w-1/2 m-10 mx-auto rounded-2xl h-full">
             <!--Island Control container-->
             <div class="flex flex-col container p-10 mx-auto" v-show="!island_is_set">
                 <div class="mx-auto text-center">
