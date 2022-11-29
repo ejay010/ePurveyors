@@ -21,15 +21,14 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    // dd(Island::with('marinas')->get());
-    return Inertia::render('Welcome', [
+    return Inertia::render('Guest/Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
         'islands' => Island::with('marinas')->get(),
     ]);
-});
+})->name('landing');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -54,5 +53,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/islands/{island:slug}/marina/create', [IslandController::class, 'createMarina'])->name('admin.island.marina.create');
     Route::get('/islands/{island:slug}/destroy', [IslandController::class, 'destroy'])->name('admin.island.delete');
 
+    Route::get('marinas', [MarinaController::class, 'index'])->name('admin.marinas.index');
     Route::post('marina/store', [MarinaController::class, 'store'])->name('admin.marina.store');
+    Route::get('marina/{marina:slug}', [MarinaController::class, 'show'])->name('admin.marinas.show');
+    Route::get('marina/{marina:slug}/edit', [MarinaController::class, 'edit'])->name('admin.marinas.edit');
+    Route::get('marina/{marina:slug}/destroy', [MarinaController::class, 'destroy'])->name('admin.marinas.destroy');
+    Route::patch('marina/{marina:slug}/update', [MarinaController::class, 'update'])->name('admin.marina.update');
 });

@@ -7,20 +7,19 @@
     <title>ePurveyors - Administrator</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-300">
+<body class="bg-slate-100">
     <div class="flex flex-col">
         <!--Navbar area-->
-        <nav class="flex justify-between p-4 bg-white">
+        <nav class="flex justify-between p-4 bg-white shadow-md">
             <h1>
                 <a href="{{ route('admin.index') }}">ePurveyors - Admin</a>
             </h1>
-            <ul class="flex space-x-3">
+            <ul class="hidden md:flex space-x-3">
                 <li>
-                    <a href="#">Customers</a>
+                    <a href="{{ route('allCustomerRequests') }}">Customer Requests</a>
                 </li>
                 <li>
-                    <a href="{{route('admin.islands')}}">Islands</a>
-                    
+                    <a href="{{route('admin.islands')}}">Islands</a>         
                 </li>
                 <li>
                     <a href="#">Administrators</a>

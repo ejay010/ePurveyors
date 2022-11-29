@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         // show the admin Vuejs Page
-        return view('admin.index');
+        return inertia('Admin/index');
     }
 
     /**

@@ -14,6 +14,20 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'logoprimary': {
+                    DEFAULT: '#1e8cfc',
+                    'dark': '#0372e4',
+                    'light': '#50a6fd',
+                },
+                'logosecondary': {
+                    DEFAULT: '#22313f',
+                    'light': '#344b60',
+                },
+            },
+            backgroundImage: {
+                'logo-image': 'url("../logo_lighthouse.png")'
+            }
         },
     },
 

@@ -1,5 +1,5 @@
 <x-adminlayout>
-    <div class="flex flex-col mx-auto p-4 m-2 bg-white w-3/4 rounded shadow">
+    <div class="flex flex-col mx-auto p-4 m-2 bg-white w-3/4 rounded shadow-md">
         <h2 class="text-xl">Create an Island</h2>
         <hr>
         <form class="flex flex-col" method="POST" action="{{ route('admin.islands.store') }}">
