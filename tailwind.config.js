@@ -26,7 +26,7 @@ module.exports = {
                 },
             },
             backgroundImage: {
-                'logo-image': 'url("../lighthouse.png")'
+                'logo-image': 'url("/lighthouse.png")',
             }
         },
     },
