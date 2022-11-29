@@ -1,6 +1,7 @@
 <script setup>
 import NavBarVue from '@/Components/NavBar.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import FooterVue from '@/Components/Footer.vue';
 import CustomerRequestWizard from '@/Components/CustomerRequestWizard.vue';
 
 defineProps({
@@ -17,7 +18,7 @@ defineProps({
     <Head title="Welcome">
     </Head>
 
-    <div class="min-h-screen sm:bg-slate-100 bg-white bg-logo-image bg-no-repeat bg-bottom sm:bg-center sm:bg-cover ">
+    <div class="min-h-screen bg-white bg-logo-image bg-no-repeat bg-bottom sm:bg-center sm:bg-cover ">
         <NavBarVue></NavBarVue>
         <main class="flex flex-col sm:flex-row-reverse mt-4 justify-center min-h-screen">
                     <!--Customer Request Wizard-->
@@ -31,16 +32,6 @@ defineProps({
                 <p class="m-2">Should there be an immediate need to contact you we will utilize the telephone contact provided to us.</p>
             </div>
         </main>
-        <footer class="bg-logosecondary text-white h-24 flex justify-around items-center shadow-xl">
-            <a href="#">
-                <img src="f_logo_RGB-White_1024.png" class="w-6 h-6" alt="facebook logo">
-            </a>
-            <a href="#">
-                <img src="Instagram_Glyph_White.svg" class="w-6 h-6" alt="instagram logo">
-            </a>
-            <a href="#">
-                <img src="whatsapp.png" class="w-6 h-6" alt="whatsapp logo">
-            </a>
-        </footer>
+        <FooterVue></FooterVue>
     </div>
 </template>

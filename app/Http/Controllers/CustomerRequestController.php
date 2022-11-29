@@ -86,7 +86,7 @@ class CustomerRequestController extends Controller
     public function show(CustomerRequest $customerRequest)
     {
         // show
-        return inertia('CustomerRequest', ['customerRequest' => $customerRequest, 'listFileUrl' => $customerRequest->list_file]);
+        return inertia('Customer/Requests/View', ['customerRequest' => $customerRequest, 'listFileUrl' => $customerRequest->list_file]);
     }
 
     /**

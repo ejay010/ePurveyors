@@ -1,3 +1,4 @@
+const { urlWithoutHash } = require('@inertiajs/inertia');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
@@ -26,7 +27,7 @@ module.exports = {
                 },
             },
             backgroundImage: {
-                'logo-image': 'url("/lighthouse.png")',
+                'logo-image': "url('/images/lighthouse.png')",
             }
         },
     },
