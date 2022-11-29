@@ -36,7 +36,7 @@ defineProps({
                 <img src="f_logo_RGB-White_1024.png" class="w-6 h-6" alt="facebook logo">
             </a>
             <a href="#">
-                <img src="instagram.png" class="w-6 h-6" alt="instagram logo">
+                <img src="Instagram_Glyph_White.svg" class="w-6 h-6" alt="instagram logo">
             </a>
             <a href="#">
                 <img src="whatsapp.png" class="w-6 h-6" alt="whatsapp logo">
