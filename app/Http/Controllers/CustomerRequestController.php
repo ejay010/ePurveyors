@@ -30,7 +30,7 @@ class CustomerRequestController extends Controller
                     'email' => $customer_request->customerEmail,
                     'tel_phone' => $customer_request->customerTelPhone,
                     'created_at' => $customer_request->created_at->toFormattedDateString(),
-                    'edit_url' => URL::route('editCustomerRequest', $customer_request->id),
+                    'edit_url' => URL::route('admin.customerRequest.edit', $customer_request->id),
                 ];
             })
         ]);
@@ -89,6 +89,20 @@ class CustomerRequestController extends Controller
         return inertia('Customer/Requests/View', ['customerRequest' => $customerRequest, 'listFileUrl' => $customerRequest->list_file]);
     }
 
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\CustomerRequest  $customerRequest
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin(CustomerRequest $customerRequest)
+    {
+        // show
+        return inertia('Admin/CustomerRequests/View', ['customerRequest' => $customerRequest, 'listFileUrl' => $customerRequest->list_file]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,7 +112,7 @@ class CustomerRequestController extends Controller
     public function edit(CustomerRequest $customerRequest)
     {
         // only should be able to edit
-        return inertia('EditCustomerRequest', 
+        return inertia('Admin/CustomerRequests/Edit', 
         [
             'customerRequest' => $customerRequest,
             'listFileUrl' => $customerRequest->list_file, 

@@ -25,7 +25,7 @@ defineProps({
                 </tr>
             </thead>
             <tbody>
-                <tr class="" v-for="customerRequest in customerRequests" :key="customerRequest.id">
+                <tr v-for="customerRequest in customerRequests" :key="customerRequest.id">
                     <td class="border p-2">{{ customerRequest.id }}</td>
                     <td class="border p-2">{{ customerRequest.status }}</td>
                     <td class="border p-2">{{ customerRequest.marina }}</td>
