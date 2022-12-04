@@ -35,9 +35,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/customer-request', [CustomerRequestController::class, 'store']);
-Route::get('/customer-request/{customerRequest}', [CustomerRequestController::class, 'show'])->name('customerRequest.show');
-Route::get('/customer-request/{customerRequest}/edit', [CustomerRequestController::class, 'edit'])->name('editCustomerRequest');
-Route::post('/customer-request/{customerRequest}/edit', [CustomerRequestController::class, 'update'])->name('updateCustomerRequest');
 //Admin routes
 Route::get('/customer-requests', [CustomerRequestController::class, 'index'])->name('allCustomerRequests');
 require __DIR__.'/auth.php';
@@ -59,4 +56,9 @@ Route::prefix('admin')->group(function () {
     Route::get('marina/{marina:slug}/edit', [MarinaController::class, 'edit'])->name('admin.marinas.edit');
     Route::get('marina/{marina:slug}/destroy', [MarinaController::class, 'destroy'])->name('admin.marinas.destroy');
     Route::patch('marina/{marina:slug}/update', [MarinaController::class, 'update'])->name('admin.marina.update');
+    
+    Route::get('customer-request/{customerRequest}', [CustomerRequestController::class, 'show'])->name('admin.customerRequest.show');
+    Route::get('customer-request/{customerRequest}/edit', [CustomerRequestController::class, 'edit'])->name('admin.customerRequest.edit');
+    Route::post('customer-request/{customerRequest}/edit', [CustomerRequestController::class, 'update'])->name('admin.customerRequest.update');
+
 });

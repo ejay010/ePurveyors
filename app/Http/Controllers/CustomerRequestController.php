@@ -102,7 +102,7 @@ class CustomerRequestController extends Controller
         [
             'customerRequest' => $customerRequest,
             'listFileUrl' => $customerRequest->list_file, 
-            'update_url' => URL::route('updateCustomerRequest', $customerRequest->id)
+            'update_url' => URL::route('admin.customerRequest.update', $customerRequest->id)
         ]);
     }
 

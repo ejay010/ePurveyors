@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\CustomerRequest;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,7 +16,10 @@ class AdminController extends Controller
     public function index()
     {
         // show the admin Vuejs Page
-        return inertia('Admin/index');
+        $customer_requests = CustomerRequest::all();
+        return inertia('Admin/index', [
+            'customer_requests' => $customer_requests
+        ]);
     }
 
     /**
