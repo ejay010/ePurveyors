@@ -74,7 +74,7 @@ class CustomerRequestController extends Controller
             'customerTelPhone' => $validated['contact_info']['tel_phone'],
         ]);
 
-        return redirect(route('customerRequest.show', $newRequest->id));
+        return redirect(route('customer.customerRequest.show', $newRequest->id));
     }
 
     /**
