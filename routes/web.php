@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\CustomerRequestController;
 use App\Http\Controllers\IslandController;
 use App\Http\Controllers\MarinaController;
@@ -42,7 +43,14 @@ Route::get('/customer-requests', [CustomerRequestController::class, 'index'])->n
 require __DIR__.'/auth.php';
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/login', [AdministratorController::class, 'login'])->name('admin.login.show');
+    Route::post('/login', [AdministratorController::class, 'validateLogin'])->name('admin.login.post');
+});
+
+Route::prefix('admin')->middleware(['auth.admin'])->group(function () {
+    Route::get('/', [AdministratorController::class, 'index'])->name('admin.index');
+    Route::get('/logout', [AdministratorController::class, 'logout'])->name('admin.logout');
+
     Route::get('islands', [IslandController::class, 'index'])->name('admin.islands');
     Route::get('/islands/create', [IslandController::class, 'create'])->name('admin.islands.create');
     Route::post('/islands/store', [IslandController::class, 'store'])->name('admin.islands.store');

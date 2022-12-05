@@ -8,6 +8,10 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
+
+defineProps({
+    admin: Object
+})
 </script>
 
 <template>
@@ -49,7 +53,7 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink as="button">
+                                        <DropdownLink as="button" :href="route('admin.logout')">
                                             Log out
                                         </DropdownLink>
                                     </template>
@@ -87,7 +91,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <ResponsiveNavLink :href="route('admin.logout')" as="button">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
