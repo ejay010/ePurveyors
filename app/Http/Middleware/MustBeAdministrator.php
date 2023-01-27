@@ -20,7 +20,8 @@ class MustBeAdministrator
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::guard('admin')->user()){
-            abort(Response::HTTP_FORBIDDEN);
+            // abort(Response::HTTP_FORBIDDEN);
+            return redirect(route('admin.login.show'));
         }
 
         return $next($request);

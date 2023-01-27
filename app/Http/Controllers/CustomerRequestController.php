@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrator;
 use App\Models\CustomerRequest;
+use App\Notifications\RequestCreated;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -75,6 +77,9 @@ class CustomerRequestController extends Controller
         ]);
 
         //notify admin
+        $admin = Administrator::where('email', 'epurveyors700@gmail.com')->first();
+
+        $admin->notify(new RequestCreated($newRequest));
 
         return redirect(route('customer.customerRequest.show', $newRequest->id));
     }
