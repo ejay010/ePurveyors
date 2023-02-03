@@ -12,9 +12,9 @@ import NavLinkVue from './NavLink.vue';
             </div>
     
             <!-- nav links-->
-            <!-- <nav class="space-x-4">
+            <nav class="space-x-4">
                 <NavLinkVue :href="route('login')" :active="route().current('login')">Login</NavLinkVue>
-                <NavLinkVue :href="route('register')" :active="route().current('register')">Register</NavLinkVue>
-            </nav> -->
+                <!-- <NavLinkVue :href="route('register')" :active="route().current('register')">Register</NavLinkVue> -->
+            </nav>
         </div>
 </template>

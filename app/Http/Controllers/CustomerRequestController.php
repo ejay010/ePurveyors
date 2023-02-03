@@ -22,7 +22,7 @@ class CustomerRequestController extends Controller
         // Display a listing of all customer requests
         
         return inertia('Admin/CustomerRequests/Index', [
-            'customerRequests' => CustomerRequest::all()->map(function ($customer_request) {
+            'customerRequests' => CustomerRequest::latest()->get()->map(function ($customer_request) {
                 return [
                     'id' => $customer_request->id,
                     'name' => $customer_request->customerName,
@@ -141,7 +141,7 @@ class CustomerRequestController extends Controller
             'status' => "in:'Received,Processing,Out for Delivery,Complete,'"]);
         $customerRequest->update($validation);
 
-        return redirect(route('allCustomerRequests'));
+        return redirect(route('admin.CustomerRequests.index'));
     }
 
     /**

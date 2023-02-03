@@ -45,7 +45,6 @@ Route::post('/customer-request', [CustomerRequestController::class, 'store']);
 Route::get('customer-request/{customerRequest}', [CustomerRequestController::class, 'show'])->name('customer.customerRequest.show');
 
 //Admin routes
-Route::get('/customer-requests', [CustomerRequestController::class, 'index'])->name('allCustomerRequests');
 require __DIR__.'/auth.php';
 
 Route::prefix('admin')->group(function () {
@@ -54,6 +53,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->middleware(['auth.admin'])->group(function () {
+
     Route::get('/', [AdministratorController::class, 'index'])->name('admin.index');
     Route::get('/logout', [AdministratorController::class, 'logout'])->name('admin.logout');
 
@@ -73,6 +73,8 @@ Route::prefix('admin')->middleware(['auth.admin'])->group(function () {
     Route::get('marina/{marina:slug}/destroy', [MarinaController::class, 'destroy'])->name('admin.marinas.destroy');
     Route::patch('marina/{marina:slug}/update', [MarinaController::class, 'update'])->name('admin.marina.update');
     
+
+    Route::get('customer-requests', [CustomerRequestController::class, 'index'])->name('admin.CustomerRequests.index');
     Route::get('customer-request/{customerRequest}', [CustomerRequestController::class, 'showAdmin'])->name('admin.customerRequest.show');
     Route::get('customer-request/{customerRequest}/edit', [CustomerRequestController::class, 'edit'])->name('admin.customerRequest.edit');
     Route::post('customer-request/{customerRequest}/edit', [CustomerRequestController::class, 'update'])->name('admin.customerRequest.update');

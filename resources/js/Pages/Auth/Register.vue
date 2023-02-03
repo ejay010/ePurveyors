@@ -13,19 +13,14 @@ const form = useForm({
     password_confirmation: '',
     terms: false,
 });
-
-const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
-};
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Customer Registration" />
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="form.post('/register')">
+            <h3 class="font-bold m-2 text-center">New customer registration</h3>
             <div>
                 <InputLabel for="name" value="Name" />
                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />

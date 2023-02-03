@@ -33,6 +33,10 @@ defineProps({
                                 <NavLink :href="route('admin.index')" :active="route().current('admin.index')">
                                 Dashboard
                                 </NavLink>
+
+                                <NavLink :href="route('admin.CustomerRequests.index')" :active="route().current('admin.CustomerRequests.index')">
+                                Customer requests
+                                </NavLink>
                             </div>
                         </div>
 
@@ -80,6 +84,10 @@ defineProps({
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('admin.index')" :active="route().current('admin.index')">
                             Dashboard
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('admin.CustomerRequests.index')" :active="route().current('admin.CustomerRequests.index')">
+                            Customer Requests
                         </ResponsiveNavLink>
                     </div>
 

@@ -1,4 +1,6 @@
 <script setup>
+import AdminLayout from '@/Layouts/AdminLayout.vue';
+import NavLink from '@/Components/NavLink.vue';
 import { Head } from '@inertiajs/inertia-vue3'
 
 defineProps({
@@ -8,35 +10,59 @@ defineProps({
 </script>
 
 <template>
-    <Head title="All Customer Requests" />
+    <AdminLayout>
+        <Head title="All Customer Requests" />
+        <template #header>
+           All customer requests
+        </template>
 
     <div class="container mx-auto my-4">
-        <h1 class="text-2xl font-bold my-3">Customer Requests</h1>
-        <table class="table-auto ">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Status</th>
-                    <th>Marina</th>
-                    <th>Customer Name</th>
-                    <th>Customer Email</th>
-                    <th>Customer Telephone</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="customerRequest in customerRequests" :key="customerRequest.id">
-                    <td class="border p-2">{{ customerRequest.id }}</td>
-                    <td class="border p-2">{{ customerRequest.status }}</td>
-                    <td class="border p-2">{{ customerRequest.marina }}</td>
-                    <td class="border p-2">{{ customerRequest.name }}</td>
-                    <td class="border p-2">{{ customerRequest.email }}</td>
-                    <td class="border p-2">{{ customerRequest.tel_phone }}</td>
-                    <td class="border p-2">
-                        <a :href="customerRequest.edit_url">Edit</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="flex flex-col m-4 h-96 sm:h-1/2 md:h-1/5 overflow-auto">
+            <table class="table-auto mx-auto bg-white rounded-lg shadow ">
+                <thead class="border-b border-logoprimary-dark">
+                    <tr>
+                        <th class="p-4">ID</th>
+                        <th class="p-4">Status</th>
+                        <th class="p-4">Island</th>
+                        <th class="p-4">Marina</th>
+                        <th class="p-4">Customer Name</th>
+                        <th class="p-4">Customer Email</th>
+                        <th class="p-4">Customer Telephone</th>
+                        <th>View or Edit</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr v-for="request in customerRequests" :key="request.id">
+                        <td class="py-2 px-4 text-center">
+                            {{ request.id }}
+                        </td>
+                        <td class="py-2 px-4 text-center">
+                            {{ request.status }}
+                        </td>
+                        <td class="py-2 px-4 text-center">
+                            {{ request.island }}
+                        </td>
+                        <td class="py-2 px-4 text-center">
+                            {{ request.marina }}
+                        </td>
+                        <td class="py-2 px-4 text-center">
+                            {{ request.name }}
+                        </td>
+                        <td class="py-2 px-4 text-center">
+                            {{ request.email }}
+                        </td>
+                        <td class="py-2 px-4 text-center">
+                            {{ request.tel_phone }}
+                        </td>
+                        <td>
+                            <NavLink :href="route('admin.customerRequest.show', {id: request.id})" class="m-2 block text-logoprimary-light hover:text-logoprimary-dark">View</NavLink>
+                            <NavLink :href="route('admin.customerRequest.edit', {id: request.id})" class="m-2 block text-logoprimary-light hover:text-logoprimary-dark">Edit</NavLink>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    </AdminLayout>
+    
 </template>
