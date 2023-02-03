@@ -21,7 +21,7 @@ class CustomerRequestController extends Controller
     {
         // Display a listing of all customer requests
         
-        return inertia('Admin/IndexCustomerRequest', [
+        return inertia('Admin/CustomerRequests/Index', [
             'customerRequests' => CustomerRequest::all()->map(function ($customer_request) {
                 return [
                     'id' => $customer_request->id,

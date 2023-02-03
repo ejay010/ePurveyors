@@ -18,6 +18,7 @@ class CustomerRequest extends Model
         'customerName',
         'customerEmail',
         'customerTelPhone',
+        'user_id',
     ];
 
     protected $appends = [
@@ -29,5 +30,8 @@ class CustomerRequest extends Model
         return new Attribute(fn($value) => url($value));
     }
 
+    function user() {
+        return $this->belongsTo(User::class);
+    }
 
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\IslandController;
 use App\Http\Controllers\MarinaController;
 use App\Models\Island;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,7 +33,12 @@ Route::get('/', function () {
 })->name('landing');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $customer = Auth::user();
+
+    return Inertia::render('Customer/Dashboard', [
+        'customer' => $customer,
+        'provisionsRequested' => $customer->ProvisionRequests,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/customer-request', [CustomerRequestController::class, 'store']);
