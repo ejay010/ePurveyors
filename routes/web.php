@@ -72,7 +72,7 @@ Route::prefix('admin')->middleware(['auth.admin'])->group(function () {
     Route::get('marina/{marina:slug}/edit', [MarinaController::class, 'edit'])->name('admin.marinas.edit');
     Route::get('marina/{marina:slug}/destroy', [MarinaController::class, 'destroy'])->name('admin.marinas.destroy');
     Route::patch('marina/{marina:slug}/update', [MarinaController::class, 'update'])->name('admin.marina.update');
-    
+    Route::get('marina/{marina:slug}/toggle_service', [MarinaController::class, 'toggleStatus'])->name('admin.marina.toggleStatus');
 
     Route::get('customer-requests', [CustomerRequestController::class, 'index'])->name('admin.CustomerRequests.index');
     Route::get('customer-request/{customerRequest}', [CustomerRequestController::class, 'showAdmin'])->name('admin.customerRequest.show');

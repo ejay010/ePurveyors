@@ -37,6 +37,10 @@ defineProps({
                                 <NavLink :href="route('admin.CustomerRequests.index')" :active="route().current('admin.CustomerRequests.index')">
                                 Customer requests
                                 </NavLink>
+
+                                <NavLink :href="route('admin.islands')" :active="route().current('admin.islands')">
+                                Islands & Marinas
+                                </NavLink>
                             </div>
                         </div>
 
@@ -88,6 +92,10 @@ defineProps({
 
                         <ResponsiveNavLink :href="route('admin.CustomerRequests.index')" :active="route().current('admin.CustomerRequests.index')">
                             Customer Requests
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('admin.islands')" :active="route().current('admin.islands')">
+                            Islands & Marinas
                         </ResponsiveNavLink>
                     </div>
 

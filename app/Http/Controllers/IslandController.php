@@ -16,7 +16,10 @@ class IslandController extends Controller
     public function index()
     {
         // show a list of all Islands to the admin
-        return view('admin.islands.index', ['Islands' => Island::all()]);
+        
+        return inertia('Admin/Islands/index', [
+            'Islands' => Island::all()
+        ]);
     }
 
     /**
@@ -59,7 +62,10 @@ class IslandController extends Controller
     public function show(Island $island)
     {
         //
-        return view('admin.islands.show', ['island' => $island]);
+        return inertia('Admin/Islands/show', [
+            'island' => $island,
+            'marinas' => $island->marinas,
+        ]);
     }
 
     /**
@@ -114,6 +120,8 @@ class IslandController extends Controller
      */
     public function createMarina(Island $island)
     {
-        return view('admin.marina.create', ['island' => $island]);
+        return inertia('Admin/Marinas/create', [
+            'island_selected' => $island,
+        ]);
     }
 }

@@ -67,8 +67,9 @@ function send_everything() {
                         <label for="marina">Marina:</label>
                         <select v-model="service_request.marina" name="marina" id="marina"
                             class="border-0 shadow rounded block w-full" required>
-                            <option v-for="marina in service_request.island.marinas" :key="marina.id" :value="marina">{{
-                                marina.name }}</option>
+                            <option v-for="marina in service_request.island.marinas" :key="marina.id" :value="marina" :disabled="(marina.is_open === 'Closed') ? true : false ">{{
+                                marina.name }} <span v-if="(marina.is_open === 'Closed') ? true : false ">-- Service coming soon</span>
+                            </option>
                         </select>
                     </div>
 

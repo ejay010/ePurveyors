@@ -45,8 +45,8 @@ class MarinaController extends Controller
         $slug = Str::slug($validated['name']);
         $validated['slug'] = $slug;
 
-        if($request->island_slug) {
-            $marina = Island::where('slug', $request->island_slug)->first()->marinas()->create($validated);
+        if($request->island['slug']) {
+            $marina = Island::where('slug', $request->island['slug'])->first()->marinas()->create($validated);
             return redirect(route('admin.islands.show', ['island' => $marina->island->slug]));
         } else {
             return redirect()->back()->with('error', 'Please select an island');
@@ -64,6 +64,9 @@ class MarinaController extends Controller
     public function show(Marina $marina)
     {
         //
+        return inertia('Admin/Marinas/show', [
+            'marina' => $marina
+        ]);
     }
 
     /**
@@ -75,6 +78,17 @@ class MarinaController extends Controller
     public function edit(Marina $marina)
     {
         //
+    }
+
+    function toggleStatus(Marina $marina){
+        if ($marina->is_open == 'Closed') {
+            $marina->update(['is_open' => true]);
+            return redirect()->back()->with('success', 'Marina is now out of service');
+        }
+        if ($marina->is_open == 'Open') {
+            $marina->update(['is_open' => false]);
+            return redirect()->back()->with('success', 'Marina is now in service');
+        }
     }
 
     /**
