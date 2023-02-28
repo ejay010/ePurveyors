@@ -29,8 +29,8 @@ class IslandController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.islands.create');
+        // 
+        return inertia('Admin/Islands/create');
     }
 
     /**
@@ -48,9 +48,11 @@ class IslandController extends Controller
 
         $slug = Str::slug($validated['name']);
         $validated['slug'] = $slug;
-        $newIsland = Island::create($validated);
+        $validated['description'] = $request['description'];
+        Island::create($validated);
 
-        return redirect(route('admin.islands.show', ['island' => $newIsland]));
+        return redirect(route('admin.islands'));
+        // return inertia('Admin/Islands/index');
     }
 
     /**

@@ -9,8 +9,12 @@ defineProps({
 
 
 const service_request = useForm({
-    island: {},
-    marina: {},
+    address: {
+        line_1: '',
+        line_2: '',
+        city: '',
+        island: {},
+    },
     list_file: {},
     contact_info: {
         name: '',
@@ -19,10 +23,10 @@ const service_request = useForm({
     }
 });
 
-const island_is_set = ref(false)
+const address_is_set = ref(false)
 
-function set_island() {
-    island_is_set.value = !island_is_set.value
+function set_address() {
+    address_is_set.value = !address_is_set.value
 }
 
 const list_is_set = ref(false)
@@ -45,18 +49,19 @@ function send_everything() {
 <template>
     <div class="flex">
         <!--Island Control container-->
-        <div class="flex flex-col container p-10 mx-auto" v-show="!island_is_set">
+        <div class="flex flex-col container p-10 mx-auto" v-show="!address_is_set">
             <div class="mx-auto text-center">
-                <h1 class="text-2xl font-bold text-logoprimary-light">Where are you docked?</h1>
-                <p class="mx-auto mb-2">Tell us where you are docked so that we can service you accordingly.</p>
+                <h1 class="text-2xl font-bold text-logoprimary-light">Where are you located?</h1>
+                <p class="mx-auto mb-2">Tell us where you are located so that we can service you accordingly.</p>
             </div>
 
-            <div v-show="!island_is_set">
-                <form @submit.prevent="set_island"
+            <div v-show="!address_is_set">
+                <form @submit.prevent="set_address"
                     >
+
                     <div class="my-2">
                         <label for="island">Island:</label>
-                        <select v-model="service_request.island" name="island" id="island"
+                        <select v-model="service_request.address.island" name="island" id="island"
                             class="border-0 shadow rounded block w-full" required>
                             <option v-for="island in islands" :key="island.id" :value="island">{{ island.name }}
                             </option>
@@ -64,13 +69,18 @@ function send_everything() {
                     </div>
 
                     <div class="my-2">
-                        <label for="marina">Marina:</label>
-                        <select v-model="service_request.marina" name="marina" id="marina"
-                            class="border-0 shadow rounded block w-full" required>
-                            <option v-for="marina in service_request.island.marinas" :key="marina.id" :value="marina" :disabled="(marina.is_open === 'Closed') ? true : false ">{{
-                                marina.name }} <span v-if="(marina.is_open === 'Closed') ? true : false ">-- Service coming soon</span>
-                            </option>
-                        </select>
+                        <label for="city">City:</label>
+                        <input class="border-0 shadow rounded block w-full" type="text" name="city" id="city" v-bind="service_request.address.city" required/>
+                    </div>
+
+                    <div class="my-2">
+                        <label for="line_1">Address line 1:</label>
+                        <input class="border-0 shadow rounded block w-full" type="text" name="line_1" id="line_1" v-bind="service_request.address.line_1" required/>
+                    </div>
+
+                    <div class="my-2">
+                        <label for="line_2">Address line 2:</label>
+                        <input class="border-0 shadow rounded block w-full" type="text" name="line_2" id="line_2" v-bind="service_request.address.line_2"/>
                     </div>
 
                     <div class="mt-4">
@@ -88,7 +98,7 @@ function send_everything() {
         </div>
 
         <!--List Control-->
-        <div class="flex flex-col container p-10 mx-auto" v-show="island_is_set && !list_is_set">
+        <div class="flex flex-col container p-10 mx-auto" v-show="address_is_set && !list_is_set">
             <div class="mx-auto">
                 <h2 class="text-xl font-bold underline-offset-2">Upload your list</h2>
                 <p>Send us your grocery list, supply list, or parts list. This form can accept PDF's or Screenshots</p>
@@ -149,15 +159,15 @@ function send_everything() {
         </div>
 
         <!--Review Box-->
-        <div v-show="island_is_set && list_is_set && contact_is_set" class="flex flex-col mx-auto p-10">
+        <div v-show="address_is_set && list_is_set && contact_is_set" class="flex flex-col mx-auto p-10">
             <h2 class="text-center text-2xl font-bold">Review and Submit</h2>
             <!-- location -->
             <div class="m-2">
                 <div class="flex">
-                    <h3 class="text-lg font-bold">Docking location</h3>
+                    <h3 class="text-lg font-bold">Location Information</h3>
 
 
-                    <button class=" py-1 px-2 font-medium text-blue-800" @click="set_island">
+                    <button class=" py-1 px-2 font-medium text-blue-800" @click="set_address">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -167,8 +177,13 @@ function send_everything() {
                     </button>
                 </div>
 
-                <p>Island: {{ service_request.island.name }}</p>
-                <p>Marina: {{ service_request.marina.name }}</p>
+                <p>Island: {{ service_request.address.island.name }}</p>
+                <p>City: {{ service_request.address.city }}</p>
+                <p>Address line 1: {{ service_request.address.line_1 }}</p>
+                <p>Address line 2: {{ service_request.address.line_2 }}</p>
+
+
+
 
             </div>
 
