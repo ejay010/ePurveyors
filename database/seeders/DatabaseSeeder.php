@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\Administrator::factory()->create();
 
-        DB::table('Administrators')->insert([
+        DB::table('administrators')->insert([
             'email' => 'epurveyors700@gmail.com',
             'name' => 'System Administrator',
             'password' => Hash::make(env('ADMIN_PASSWORD'))
