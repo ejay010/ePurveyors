@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Administrator;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +25,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\Administrator::factory()->create();
+        // \App\Models\Administrator::factory()->create();
+
+        DB::table('Administrators')->insert([
+            'email' => 'epurveyors700@gmail.com',
+            'name' => 'System Administrator',
+            'password' => Hash::make(env('ADMIN_PASSWORD'))
+        ]);
     }
 }
